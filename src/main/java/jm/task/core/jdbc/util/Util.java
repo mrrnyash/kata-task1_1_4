@@ -3,15 +3,17 @@ package jm.task.core.jdbc.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/*
+Singleton Class
+ */
 public class Util {
-    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static Connection conn = null;
 
-    public static Connection getConnection() {
-        Connection conn = null;
+    static {
+        String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+        String DB_URL = "jdbc:mysql://localhost:3306/test_db";
+        String USERNAME = "root";
+        String PASSWORD = "root";
         try {
             Class.forName(DB_DRIVER);
             conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -19,6 +21,9 @@ public class Util {
             System.out.println("Connection error");
             e.printStackTrace();
         }
+    }
+
+    public static Connection getConnection() {
         return conn;
     }
 }
