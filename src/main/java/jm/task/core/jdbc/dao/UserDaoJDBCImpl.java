@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl extends Util implements UserDao {
 
-    static Connection conn = Util.getConnection();
+    static Connection conn = getConnection();
 
     public UserDaoJDBCImpl() {
 
